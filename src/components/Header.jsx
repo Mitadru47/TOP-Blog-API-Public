@@ -1,27 +1,48 @@
-function Header(props){
+import { useEffect, useState } from "react";
 
-    return(
+async function getIndex(setIndexResponse){
 
-        <div id="top-nav">
+    fetch("http://localhost:3000/index", { mode: 'cors' })
 
-            <div id="header-container"> 
-                <a id="header" href="/">Blog API</a>
-            </div>
+        .then((response) => response.json())
+        .then((responseBody) => setIndexResponse(responseBody))
 
-            <div id="header-info">
+        .catch((error) => console.log(error));
+}
 
-                <div id="author-container"> 
-                    <a id="author" href={author[0].url}>Author: {author[0].username}</a>
+function Header(){
+
+    const [indexResponse, setIndexResponse] = useState();
+    useEffect(() => { getIndex(setIndexResponse); }, []);
+
+    if(indexResponse){
+
+        const author = indexResponse.author;
+        const posts = indexResponse.posts;
+
+        return(
+
+            <div id="top-nav">
+
+                <div id="header-container"> 
+                    <a id="header" href="/">Blog API</a>
                 </div>
 
-                <div id="post-count-container"> 
-                    <p id="post-count">Posts: {posts.length}</p>
+                <div id="header-info">
+
+                    <div id="author-container"> 
+                        <a id="author" href={author[0].url}>Author: {author[0].username}</a>
+                    </div>
+
+                    <div id="post-count-container"> 
+                        <p id="post-count">Posts: {posts.length}</p>
+                    </div>
+
                 </div>
 
             </div>
-
-        </div>
-    );
+        );
+    }
 }
 
 export default Header;
