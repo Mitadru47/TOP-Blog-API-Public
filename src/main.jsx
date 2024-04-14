@@ -1,17 +1,44 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
 import Header from './components/Header.jsx';
-import App from './components/App.jsx';
+import Index from './components/Index.jsx';
+import PostDetail from './components/PostDetail.jsx';
 
 import './styles/styles.css';
+
+const router = createBrowserRouter([
+  
+  {
+
+    path: "/",
+    element: <Index />
+
+  },
+
+  {
+
+    path: "/index",
+    element: <Index />
+
+  },
+
+  {
+
+    path: "/index/post/:id",
+    element: <PostDetail />
+    
+  }
+]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   
   <React.StrictMode>
 
     <Header />
-    <App />
+    <RouterProvider router={router} />
     
   </React.StrictMode>,
 );

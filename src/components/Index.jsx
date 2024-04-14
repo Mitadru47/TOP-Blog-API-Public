@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+import Post from "./Post";
+
 async function getIndex(setIndexResponse){
 
     fetch("http://localhost:3000/index", { mode: 'cors' })
@@ -17,34 +19,16 @@ function App() {
 
   if(indexResponse){
 
+    let index = 0;
     const posts = indexResponse.posts;
 
     if(posts.length > 0){
 
       return (
 
-        <div className="posts-container">
-        
-          <div className="posts">
+        <div className="posts">
+          {posts.map((post) => <Post key={index} index={index++} post={post} />)}
 
-            <div className="post-preview">
-
-              <div className="post-title">
-                <a href={post.url}>{post.title}</a>
-
-              </div>
-
-              { post.body.length > 50 ? 
-                <div className="post-body">{post.body.substring(0, 50) + "..."}</div> 
-                : <div className="post-body">{post.body} </div>
-              }
-
-            </div>
-
-            <div className="post-timestamp">{post.formattedTimestamp}</div>
-
-          </div>
-        
         </div>
       );
     }
