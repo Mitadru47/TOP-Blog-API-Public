@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import Comments from "./Comments";
+import CommentCreator from "./CommentCreator";
 
 async function getPostDetail(setPostDetailResponse){
 
@@ -27,8 +28,6 @@ function PostDetail(){
         const post = postDetailResponse.post;
         const comments = postDetailResponse.comments;
 
-        console.log(comments[0].username);
-
         return(
 
             <div id="details">
@@ -50,13 +49,15 @@ function PostDetail(){
 
                 </div>
 
-                <Comments comments={comments}/>
+                <Comments comments={comments} />
 
                 <br></br>
                 <br></br>
                 <br></br>
                 <br></br>
             
+                <CommentCreator post={post} />
+
             </div>
         );
     }
