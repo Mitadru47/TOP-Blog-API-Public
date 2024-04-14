@@ -6,13 +6,13 @@ async function getIndex(setIndexResponse){
 
     fetch("http://localhost:3000/index", { mode: 'cors' })
 
-        .then((response) => response.json())
-        .then((responseBody) => setIndexResponse(responseBody))
+      .then((response) => response.json())
+      .then((responseBody) => setIndexResponse(responseBody))
 
-        .catch((error) => console.log(error));
+      .catch((error) => console.log(error));
 }
 
-function App() {
+function Index() {
 
   const [indexResponse, setIndexResponse] = useState();
   useEffect(() => { getIndex(setIndexResponse); }, []);
@@ -35,4 +35,4 @@ function App() {
   }
 }
 
-export default App
+export default Index;
