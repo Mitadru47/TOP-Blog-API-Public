@@ -10,25 +10,16 @@ async function getIndex(setIndexResponse){
         .catch((error) => console.log(error));
 }
 
-function Header(){
+function HeaderInfo(props){
 
-    const [indexResponse, setIndexResponse] = useState();
-    useEffect(() => { getIndex(setIndexResponse); }, []);
+    if(props.indexResponse){
 
-    if(indexResponse){
-
-        const author = indexResponse.author;
-        const posts = indexResponse.posts;
+        const author = props.indexResponse.author;
+        const posts = props.indexResponse.posts;
 
         return(
 
-            <div id="top-nav">
-
-                <div id="header-container"> 
-                    <a id="header" href="/">Blog API</a>
-                </div>
-
-                <div id="header-info">
+            <div id="header-info">
 
                     <div id="author-container"> 
                         <a id="author" href={author[0].url}>Author: {author[0].username}</a>
@@ -39,10 +30,27 @@ function Header(){
                     </div>
 
                 </div>
-
-            </div>
         );
     }
+}
+
+function Header(){
+
+    const [indexResponse, setIndexResponse] = useState();
+    useEffect(() => { getIndex(setIndexResponse); }, []);
+
+    return(
+
+        <div id="top-nav">
+
+            <div id="header-container"> 
+                <a id="header" href="/">Blog API</a>
+            </div>
+
+            <HeaderInfo indexResponse={indexResponse}/>
+
+        </div>
+    );
 }
 
 export default Header;
