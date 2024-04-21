@@ -8,6 +8,7 @@ import Index from './components/Index.jsx';
 import PostDetail from './components/PostDetail.jsx';
 
 import './styles/styles.css';
+import UserDetail from './components/UserDetail.jsx';
 
 const router = createBrowserRouter([
   
@@ -30,6 +31,13 @@ const router = createBrowserRouter([
     path: "/index/post/:id",
     element: <PostDetail />
 
+  },
+
+  {
+
+    path: "/index/user/:id",
+    element: <UserDetail />
+    
   }
 ]);
 
