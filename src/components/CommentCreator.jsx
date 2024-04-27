@@ -1,11 +1,12 @@
-function CommentCreator({ post }){
+function CommentCreator({ post, onSubmit }){
 
     return(
         
         <div id="comment-creator">
+
             <div id="form-container">
 
-                <form action={post[0].url + "/comment/create"} method="POST">
+                <form target="status" action={"http://localhost:3000/index/post/" + post[0]._id + "/comment/create"} method="POST">
                     
                     <textarea id="body-input" name="body" cols="150" rows="4" placeholder="Comment"></textarea>
                     
@@ -18,6 +19,10 @@ function CommentCreator({ post }){
                     <button id="submit-button" type="submit">Comment</button>
                 
                 </form>
+
+                <br></br>
+                    
+                <iframe id="status" name="status"></iframe>
 
             </div>
         </div>

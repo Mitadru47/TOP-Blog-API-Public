@@ -48,7 +48,8 @@ const router = createBrowserRouter([
     path: "/index/post/:postid/comment/:commentid",
     element: <CommentDetail />
     
-  }
+  },
+
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
