@@ -49,11 +49,10 @@ body{
 }
 
 #post-count{
-
   margin: 0;
 }
 
-#authorDetails{
+#author-details{
 
   border: 1px solid black;
   border-radius: 10px;
@@ -194,4 +193,35 @@ body{
 
   background-color: black;
   color: white;
+}
+
+#comment-details{
+
+  border: 1px solid gray;
+  border-radius: 10px;
+
+  padding: 25px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+#comment-header{
+  font-size: 1.5rem;
+}
+
+#comment-header a{
+
+  text-decoration: none;
+  color: black;
+}
+
+#comment-header a:hover{
+  text-decoration: underline;
+}
+
+#comment-detail-body{
+  padding-left: 10px;
 }

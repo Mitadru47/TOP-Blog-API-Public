@@ -23,7 +23,7 @@ function UserDetail(){
         
         return(
 
-            <div id="authorDetails">
+            <div id="author-details">
                 
                 <div id="authorName"><strong>Author:</strong><br></br>{userDetailResponse[0].firstName + " " + userDetailResponse[0].lastName}</div>
 
