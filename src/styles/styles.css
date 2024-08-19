@@ -67,7 +67,7 @@ body{
 .posts{
 
   display: flex;
-  justify-content: center;
+  justify-content: start;
   
   gap: 10px;
 }

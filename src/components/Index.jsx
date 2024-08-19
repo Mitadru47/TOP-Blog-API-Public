@@ -15,7 +15,7 @@ async function getIndex(setIndexResponse){
 function Index() {
 
   const [indexResponse, setIndexResponse] = useState();
-  useEffect(() => { getIndex(setIndexResponse); }, []);
+  useEffect(() => { getIndex(setIndexResponse); });
 
   if(indexResponse){
 
