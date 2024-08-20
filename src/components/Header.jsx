@@ -37,7 +37,7 @@ function HeaderInfo(props){
 function Header(){
 
     const [indexResponse, setIndexResponse] = useState();
-    useEffect(() => { getIndex(setIndexResponse); }, []);
+    useEffect(() => { getIndex(setIndexResponse); });
 
     return(
 

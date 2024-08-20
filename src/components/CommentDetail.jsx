@@ -16,8 +16,6 @@ async function getCommentDetail(setCommentDetailResponse){
 function CommentDetail(){
 
     const [commentDetailResponse, setCommentDetailResponse] = useState();
-
-    // useEffect(() => { getCommentDetail(setCommentDetailResponse); });
     getCommentDetail(setCommentDetailResponse);
 
     if(commentDetailResponse){

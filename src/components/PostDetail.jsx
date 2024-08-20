@@ -19,8 +19,6 @@ async function getPostDetail(setPostDetailResponse){
 function PostDetail(){
 
     const [postDetailResponse, setPostDetailResponse] = useState();
-    
-    // useEffect(() => { getPostDetail(setPostDetailResponse); }, []);
     getPostDetail(setPostDetailResponse);
 
     if(postDetailResponse){

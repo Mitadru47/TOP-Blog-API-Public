@@ -15,8 +15,6 @@ async function getUserDetail(setUserDetailResponse){
 function UserDetail(){
     
     const [userDetailResponse, setUserDetailResponse] = useState();
-
-    // useEffect(() => { getUserDetail(setUserDetailResponse); }, []);
     getUserDetail(setUserDetailResponse);
 
     if(userDetailResponse){
