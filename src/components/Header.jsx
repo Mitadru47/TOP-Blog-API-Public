@@ -22,7 +22,7 @@ function HeaderInfo(props){
             <div id="header-info">
 
                     <div id="author-container"> 
-                        <a id="author" href={author[0].url}>Author: {author[0].username}</a>
+                        <a id="author" href={"/index" + author[0].url}>Author: {author[0].username}</a>
                     </div>
 
                     <div id="post-count-container"> 

@@ -24,7 +24,7 @@ function CommentDetail(){
 
             <div id = "comment-details">
                 
-                <div id="comment-header"><a href={commentDetailResponse.comment.post.url}>{commentDetailResponse.comment.post.title}</a>/Comment</div>
+                <div id="comment-header"><a href={"/index" + commentDetailResponse.comment.post.url}>{commentDetailResponse.comment.post.title}</a>/Comment</div>
 
                 <div>
 

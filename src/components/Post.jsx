@@ -6,7 +6,7 @@ function Post(props){
             <div className="post-preview">
 
                 <div className="post-title">
-                <a href={props.post.url}>{props.post.title}</a>
+                <a href={"/index" + props.post.url}>{props.post.title}</a>
 
                 </div>
 

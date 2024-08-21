@@ -35,7 +35,7 @@ function PostDetail(){
                     <div id="post-detail">
 
                         <div className="post-title">
-                            <a href={post[0].url}>{post[0].title}</a>
+                            <a href={"/index" + post[0].url}>{post[0].title}</a>
 
                         </div>
 

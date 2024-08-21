@@ -5,7 +5,7 @@ function Comment({ comment }){
         <div className="comment">
         
             <div className="comment-username">
-                <a href={comment.url}>{comment.username}:</a>
+                <a href={"/index" + comment.url}>{comment.username}:</a>
         
             </div>
         
