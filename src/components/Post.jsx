@@ -2,7 +2,7 @@ function Post(props){
 
     return(
 
-        <div className="post">
+        <div className="post" id={"post" + props.index}>
             <div className="post-preview">
 
                 <div className="post-title">

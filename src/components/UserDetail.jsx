@@ -3,9 +3,7 @@ import { useParams } from "react-router-dom";
 
 async function getUserDetail(setUserDetailResponse){
 
-    let { id } = useParams();
-
-    fetch("http://localhost:3000/index/user/" + id, { mode: 'cors' })
+    fetch("http://localhost:3000/index/user", { mode: 'cors' })
         .then((response) => response.json())
         .then((responseBody) => setUserDetailResponse(responseBody))
 

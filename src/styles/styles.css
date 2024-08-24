@@ -64,7 +64,7 @@ body{
   font-size: 1.4rem;
 }
 
-.posts{
+.posts-grid, .posts, .posts-line{
 
   display: flex;
   justify-content: start;
@@ -72,12 +72,16 @@ body{
   gap: 10px;
 }
 
+.posts-grid{
+  flex-direction: column;
+}
+
 .post{
 
   border: 1px solid black;
   border-radius: 10px;
 
-  width: 20vw;
+  width: 17.5vw;
   height: 150px;
 
   padding: 25px;
