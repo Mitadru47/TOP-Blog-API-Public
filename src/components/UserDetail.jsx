@@ -35,6 +35,9 @@ function UserDetail(){
             </div>
         );
     }
+
+    else
+        return <div className="loader">Loading Author...</div>;
 }
 
 export default UserDetail;

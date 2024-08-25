@@ -4,6 +4,10 @@ body{
   font-family: "Patrick Hand", cursive;
 }
 
+.loader{
+  padding-left: 10px;
+}
+
 #top-nav{
 
   display: flex;

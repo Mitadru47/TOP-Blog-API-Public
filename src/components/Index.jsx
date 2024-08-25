@@ -81,6 +81,9 @@ function Index() {
       }
     }
   }
+
+  else
+    return <div className="loader">Loading Index...</div>;
 }
 
 export default Index;

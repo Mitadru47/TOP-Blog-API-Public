@@ -48,6 +48,9 @@ function CommentDetail(){
             </div>
         );
     }
+
+    else
+        return <div className="loader">Loading Comment...</div>;
 }
 
 export default CommentDetail;

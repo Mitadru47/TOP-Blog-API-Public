@@ -59,6 +59,9 @@ function PostDetail(){
             </div>
         );
     }
+
+    else
+        return <div className="loader">Loading Post...</div>;
 }
 
 export default PostDetail;
