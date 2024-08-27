@@ -25,14 +25,22 @@ function Header(){
                     <a id="header" href="/">Blog API</a>
                 </div>
 
-                <div id="header-info">
+                <div id="header-info-container">
+                   
+                    <div id="header-info">
 
-                    <div id="author-container"> 
-                        <a id="author" href={"/index" + indexResponse.author[0].url}>Author: {indexResponse.author[0].username}</a>
+                        <div id="author-link"> 
+                            <a id="author" href={"/index" + indexResponse.author[0].url}>Author(s)</a>
+                        </div>
+
+                        <div id="post-count-container"> 
+                            <p id="post-count">Published Posts: {indexResponse.posts.length}</p>
+                        </div>
+
                     </div>
 
-                    <div id="post-count-container"> 
-                        <p id="post-count">Posts: {indexResponse.posts.length}</p>
+                    <div id="author-container">
+                        <a id="author" href={"/index"}>Public</a>
                     </div>
 
                 </div>

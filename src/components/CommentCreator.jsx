@@ -1,4 +1,4 @@
-function CommentCreator({ post, onSubmit }){
+function CommentCreator({ post }){
 
     return(
         
