@@ -15,7 +15,14 @@ function Post(props){
 
             </div>
 
-            <div className="post-timestamp">{props.post.formattedTimestamp}</div>
+            <div className="post-timestamp-container">
+           
+                <div className="post-timestamp">{props.post.formattedCreatedTimestamp}</div>
+                <div className="post-timestamp">{!(props.post.createdTimestamp === props.post.timestamp) 
+                    && ("Last Edited: " + props.post.formattedTimestamp)}</div>
+            
+            </div>
+
         </div>
     );
 }

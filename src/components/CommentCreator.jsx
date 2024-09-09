@@ -19,9 +19,7 @@ function CommentCreator({ post }){
                     <button id="submit-button" type="submit">Comment</button>
                 
                 </form>
-
-                <br></br>
-                    
+    
                 <iframe id="status" name="status"></iframe>
 
             </div>

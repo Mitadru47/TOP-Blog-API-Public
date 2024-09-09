@@ -40,7 +40,7 @@ function Header(){
                     </div>
 
                     <div id="author-container">
-                        <a id="author" href={"/index"}>Public</a>
+                        <a id="author" href={"http://localhost:5174/login"}>Public</a>
                     </div>
 
                 </div>

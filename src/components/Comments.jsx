@@ -4,13 +4,24 @@ function Comment({ comment }){
 
         <div className="comment">
         
-            <div className="comment-username">
-                <a href={"/index" + comment.url}>{comment.username}:</a>
-        
+            <div className="comment-details">
+
+                <div className="comment-username">
+                    <a href={"/index" + comment.url}>{comment.username}:</a>
+            
+                </div>
+            
+                <div className="comment-body">{comment.body}</div>
+
             </div>
-        
-            <div className="comment-body">{comment.body}</div>
-            <br></br>
+
+            <div className="comment-tools">
+
+                <div>
+                    {!(comment.createdTimestamp === comment.timestamp) && "Edited by Post Author"}
+                </div>
+
+            </div>
 
         </div>
     );
@@ -23,9 +34,9 @@ function Comments(props){
         let index = 0;
         return(
 
-            <div id="comments-container">
+            <div className="comments-container">
 
-                <h2>Comments</h2>
+                <h2 id="comments-header">Comments</h2>
                 {props.comments.map((comment) => <Comment key={index} index={index++} comment={comment} />)}
             
             </div>

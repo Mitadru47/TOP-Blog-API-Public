@@ -14,7 +14,7 @@ body{
   justify-content: space-between;
 
   padding: 0 10px;
-  padding-bottom: 30px;
+  padding-bottom: 20px;
 }
 
 #header{
@@ -156,13 +156,27 @@ body{
   font-size: 1rem;
 }
 
+.post-timestamp-container{
+  
+  display: flex;
+  justify-content: space-between;
+}
+
+.post-detail-timestamp-container{
+
+  display: flex;
+  justify-content: end;
+
+  gap: 25px;
+}
+
 .post-timestamp{
 
   align-self: flex-end;
   font-size: 0.9rem;
 }
 
-#post-detail-container, #comments-container, .comment, #comment-creator{
+#post-detail-container, .comments-container, .comment, #comment-creator{
   padding: 0 10px;
 }
 
@@ -179,7 +193,33 @@ body{
   gap: 50px;
 }
 
+#comments-header{
+  margin-bottom: 7.5px;
+}
+
+.comments-container{
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+}
+
 .comment{
+
+  display: flex;
+  
+  justify-content: space-between;
+  align-items: center;
+
+  border: 2px dashed black;
+  border-radius: 10px;
+
+  padding: 5px 10px;
+  margin: 0px 10px;
+}
+
+.comment-details{
 
   display: flex;
   gap: 5px;
@@ -195,6 +235,14 @@ body{
 
 .comment-username a:hover{
   text-decoration: underline;
+}
+
+.comment-tools{
+
+  display: flex;
+  gap: 25px;
+
+  font-size: 0.9rem;
 }
 
 #no-comments{
@@ -276,4 +324,12 @@ body{
 
 #comment-detail-body{
   padding-left: 10px;
+}
+
+.comment-timestamp-container{
+
+  display: flex;
+  gap: 25px;
+
+  font-size: 0.9rem;
 }

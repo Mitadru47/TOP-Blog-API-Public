@@ -39,10 +39,15 @@ function CommentDetail(){
                     <div><strong>Email: </strong>{commentDetailResponse.comment.email}</div>
 
                     <br></br>
-                    <br></br>
-
-                    <div><strong>Timestamp: </strong>{commentDetailResponse.comment.timestamp}</div>
-
+                    
+                    <div className="comment-timestamp-container">
+                            
+                        <div><strong>Created: </strong>{commentDetailResponse.comment.createdTimestamp}</div>
+                        <div>{!(commentDetailResponse.comment.createdTimestamp === commentDetailResponse.comment.timestamp) 
+                            && (<p style={{margin:0}}><strong>Edited: </strong>{commentDetailResponse.comment.timestamp}</p>)}</div>
+                    
+                    </div>
+                    
                 </div>
                 
             </div>
