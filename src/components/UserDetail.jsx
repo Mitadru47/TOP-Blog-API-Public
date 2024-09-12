@@ -1,8 +1,9 @@
 import { useState } from "react";
+import { BLOG_API_BASE_URL } from "../utils/urls";
 
 async function getUserDetail(setUserDetailResponse){
 
-    fetch("http://localhost:3000/index/user", { mode: 'cors' })
+    fetch(BLOG_API_BASE_URL + "index/user", { mode: 'cors' })
         .then((response) => response.json())
         .then((responseBody) => setUserDetailResponse(responseBody))
 

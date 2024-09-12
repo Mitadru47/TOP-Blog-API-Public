@@ -1,3 +1,5 @@
+import { BLOG_API_BASE_URL } from "../utils/urls";
+
 function CommentCreator({ post }){
 
     return(
@@ -6,7 +8,7 @@ function CommentCreator({ post }){
 
             <div id="form-container">
 
-                <form target="status" action={"http://localhost:3000/index/post/" + post[0]._id + "/comment/create"} method="POST">
+                <form target="status" action={BLOG_API_BASE_URL + "index/post/" + post[0]._id + "/comment/create"} method="POST">
                     
                     <textarea id="body-input" name="body" cols="150" rows="4" placeholder="Comment"></textarea>
                     

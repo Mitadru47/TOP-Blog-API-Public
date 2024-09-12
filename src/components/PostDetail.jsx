@@ -4,11 +4,13 @@ import { useParams } from "react-router-dom";
 import Comments from "./Comments";
 import CommentCreator from "./CommentCreator";
 
+import { BLOG_API_BASE_URL } from "../utils/urls";
+
 async function getPostDetail(setPostDetailResponse){
 
     let { id } = useParams();
 
-    fetch("http://localhost:3000/index/post/" + id, { mode: 'cors' })
+    fetch(BLOG_API_BASE_URL + "index/post/" + id, { mode: 'cors' })
         
         .then((response) => response.json())
         .then((responseBody) => setPostDetailResponse(responseBody))

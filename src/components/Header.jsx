@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
+import { BLOG_API_BASE_URL, BLOG_API_PRIVATE_LOGIN } from "../utils/urls";
 
 async function getIndex(setIndexResponse){
 
-    fetch("http://localhost:3000/index", { mode: 'cors' })
+    fetch(BLOG_API_BASE_URL + "index", { mode: 'cors' })
 
         .then((response) => response.json())
         .then((responseBody) => setIndexResponse(responseBody))
@@ -40,7 +41,7 @@ function Header(){
                     </div>
 
                     <div id="author-container">
-                        <a id="author" href={"http://localhost:5174/login"}>Public</a>
+                        <a id="author" href={BLOG_API_PRIVATE_LOGIN}>Public</a>
                     </div>
 
                 </div>

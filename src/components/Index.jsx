@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 
 import Post from "./Post";
+import { BLOG_API_BASE_URL } from "../utils/urls";
 
 async function getIndex(setIndexResponse){
 
-    fetch("http://localhost:3000/index", { mode: 'cors' })
+    fetch(BLOG_API_BASE_URL + "index", { mode: 'cors' })
 
       .then((response) => response.json())
       .then((responseBody) => setIndexResponse(responseBody))

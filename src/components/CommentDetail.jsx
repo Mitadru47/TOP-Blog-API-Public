@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 
+import { BLOG_API_BASE_URL } from "../utils/urls";
+
 async function getCommentDetail(setCommentDetailResponse){
 
     const { postid, commentid } = useParams();
 
-    fetch("http://localhost:3000/index/post/" + postid + "/comment/" + commentid, { mode: "cors" })
+    fetch(BLOG_API_BASE_URL + "index/post/" + postid + "/comment/" + commentid, { mode: "cors" })
         
         .then((response) => response.json())
         .then((responseBody) => setCommentDetailResponse(responseBody))
