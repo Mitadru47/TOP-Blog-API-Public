@@ -2,6 +2,8 @@
 
 body{
 
+  zoom: 90%;
+
   padding: 5vw;
   font-family: "Patrick Hand", cursive;
 }
@@ -116,7 +118,7 @@ body{
 .posts{
 
   display: grid;
-  grid-template-columns: repeat(auto-fit, 300px);
+  grid-template-columns: repeat(auto-fit, 312px);
   
   gap: 10px;
 }
@@ -353,4 +355,28 @@ body{
   gap: 25px;
 
   font-size: 0.9rem;
+}
+
+/* Responsive Design - Index.jsx */
+
+@media (max-width: 550px){
+
+  #header{
+    font-size: 2rem;
+  }
+ 
+  #author, #post-count{
+    font-size: 1rem;
+  }
+
+  #author-container a{
+
+    font-size: 1rem;
+    padding: 7.5px 8.5px;
+  }
+
+  #header-info-container{
+
+    gap: 10px;
+  }
 }
