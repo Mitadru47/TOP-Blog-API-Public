@@ -113,10 +113,10 @@ body{
 
 /* Index.jsx */
 
-.posts-grid, .posts, .posts-line{
+.posts{
 
-  display: flex;
-  justify-content: start;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 300px);
   
   gap: 10px;
 }
@@ -129,11 +129,10 @@ body{
 
 .post{
 
+  height: 150px;
+  
   border: 1px solid black;
   border-radius: 10px;
-
-  width: 17.5vw;
-  height: 150px;
 
   padding: 25px;
 

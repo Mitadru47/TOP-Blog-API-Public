@@ -20,67 +20,15 @@ function Index() {
 
   if(indexResponse){
 
-    let index = 0;
-    let lineIndex = 0;
+    let index = 1;
 
-    const posts = indexResponse.posts;
+    return (
 
-    if(posts.length > 0){
+      <div className="posts">          
+        {indexResponse.posts.map((post) => <Post key={index} index={index++} post={post} />)}
 
-      if(posts.length <= 4){
-
-        return (
-
-          <div className="posts">          
-            {posts.map((post) => <Post key={index} index={index++} post={post} />)}
-
-          </div>
-        );
-      }
-
-      else {
-
-        let postsArray = [];
-        let postsArrayView = [];
-
-        posts.forEach((post) => {
-                       
-          postsArray[index++] = post;
-            
-          if(index % 4 === 0){
-          
-            postsArrayView[lineIndex++] = postsArray;
-            postsArray = [];
-          }
-
-        });
-
-        if(postsArray)
-          postsArrayView[lineIndex] = postsArray;
-
-        index = 0;
-        lineIndex = 0;
-
-        return (
-
-          <div className="posts-grid">          
-          
-           {postsArrayView.map((postsArray) => {
-            
-              return (
-
-                <div className="posts-line" key={"posts-line" + (lineIndex++)}>
-                  {postsArray.map((post) => <Post key={index} index={index++} post={post} />)}
-                
-                </div>
-              );
-            })}
-            
-          </div>
-
-        );
-      }
-    }
+      </div>
+    );
   }
 
   else
