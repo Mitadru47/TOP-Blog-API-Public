@@ -264,6 +264,10 @@ body{
   font-size: 0.9rem;
 }
 
+.comment-tools div{
+  margin-left: 10px;
+}
+
 #no-comments{
   padding-left: 10px;
 }
@@ -282,7 +286,9 @@ body{
 }
 
 #body-input{
+  
   margin-bottom: 0;
+  width: 80vw;
 }
 
 #email-input{
@@ -357,9 +363,11 @@ body{
   font-size: 0.9rem;
 }
 
-/* Responsive Design - Index.jsx */
+/* Responsive Design */
 
 @media (max-width: 550px){
+
+  /* Index.jsx */
 
   #header{
     font-size: 2rem;
@@ -376,7 +384,18 @@ body{
   }
 
   #header-info-container{
-
     gap: 10px;
+  }
+
+  /* Comments.jsx */
+
+  .comment{
+    
+    flex-direction: column;
+    align-items: start;
+  }
+
+  .comment-tools div{
+    margin-top: 5px;
   }
 }
