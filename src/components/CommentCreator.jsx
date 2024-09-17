@@ -1,3 +1,4 @@
+import React from "react";
 import { BLOG_API_BASE_URL } from "../utils/urls";
 
 function CommentCreator({ post }){
