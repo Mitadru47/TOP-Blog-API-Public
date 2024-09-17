@@ -1,5 +1,7 @@
 # Blog API - Public
 
+Application URL: https://blogpublic.netlify.app/
+
 This is a react application hosted via [netlify](https://www.netlify.com/) that is one of the two standalone frontend apps for an express backend `Blog API`. For further documentation regarding `Blog API`, please refer https://github.com/Mitadru47/TOP-Blog-API
 
 ![Index](https://github.com/user-attachments/assets/342fe16c-f338-49b7-ac2d-3d8bccb93a8a)
@@ -26,8 +28,6 @@ This project is equipped with the following utilities/features:
 - Strict and Consistent Naming Convention
 - Strict and Consistent Web-Element Attribute Distribution
 - Optimised for mobile, tablets and PCs
-
-..
 
 ## Blog API
 
