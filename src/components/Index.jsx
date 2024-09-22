@@ -8,7 +8,7 @@ let apiCallCount = 0;
 
 async function getIndex(setIndexResponse){
 
-  console.log("API Trigger #" + apiCallCount++);
+  console.log("Index - API Trigger #" + apiCallCount++);
 
     fetch(BLOG_API_BASE_URL + "index", { mode: 'cors' })
 
@@ -21,7 +21,17 @@ async function getIndex(setIndexResponse){
 function Index() {
 
   const [indexResponse, setIndexResponse] = useState();
-  useEffect(() => { getIndex(setIndexResponse); }, []);
+
+  useEffect(() => { 
+    
+    const intervalID = setInterval(() => {
+      getIndex(setIndexResponse); 
+
+    }, 5000);
+    
+    // Clean-Up Function
+    return (() => { clearInterval(intervalID); });
+  });
 
   if(indexResponse){
 
