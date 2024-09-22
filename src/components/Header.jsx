@@ -3,7 +3,11 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { BLOG_API_BASE_URL, BLOG_API_PRIVATE_LOGIN } from "../utils/urls";
 
+let apiCallCount = 1;
+
 async function getIndex(setIndexResponse){
+
+    console.log("Header - API Trigger #" + apiCallCount++);
 
     fetch(BLOG_API_BASE_URL + "index", { mode: 'cors' })
 
@@ -16,7 +20,17 @@ async function getIndex(setIndexResponse){
 function Header(){
 
     const [indexResponse, setIndexResponse] = useState();
-    useEffect(() => { getIndex(setIndexResponse); });
+    
+    useEffect(() => { 
+    
+        const intervalID = setInterval(() => {
+          getIndex(setIndexResponse); 
+    
+        }, 5000);
+        
+        // Clean-Up Function
+        return (() => { clearInterval(intervalID); });
+    });
 
     if(indexResponse){
 
