@@ -1,9 +1,13 @@
 import React from "react";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BLOG_API_BASE_URL } from "../utils/urls";
 
+let apiCallCount = 1;
+
 async function getUserDetail(setUserDetailResponse){
+
+    console.log("UserDetail - API Trigger #" + apiCallCount++);
 
     fetch(BLOG_API_BASE_URL + "index/user", { mode: 'cors' })
         .then((response) => response.json())
@@ -15,7 +19,17 @@ async function getUserDetail(setUserDetailResponse){
 function UserDetail(){
     
     const [userDetailResponse, setUserDetailResponse] = useState();
-    getUserDetail(setUserDetailResponse);
+
+    useEffect(() => { 
+    
+        const intervalID = setInterval(() => {
+          getUserDetail(setUserDetailResponse); 
+    
+        }, 5000);
+        
+        // Clean-Up Function
+        return (() => { clearInterval(intervalID); });
+    });
 
     if(userDetailResponse){
         

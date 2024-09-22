@@ -1,13 +1,15 @@
 import React from "react";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { BLOG_API_BASE_URL } from "../utils/urls";
 
-async function getCommentDetail(setCommentDetailResponse){
+let apiCallCount = 1;
 
-    const { postid, commentid } = useParams();
+async function getCommentDetail(setCommentDetailResponse, postid, commentid){
+    
+    console.log("CommentDetail - API Trigger #" + apiCallCount++);
 
     fetch(BLOG_API_BASE_URL + "index/post/" + postid + "/comment/" + commentid, { mode: "cors" })
         
@@ -19,8 +21,19 @@ async function getCommentDetail(setCommentDetailResponse){
 
 function CommentDetail(){
 
+    const { postid, commentid } = useParams();
     const [commentDetailResponse, setCommentDetailResponse] = useState();
-    getCommentDetail(setCommentDetailResponse);
+   
+    useEffect(() => { 
+    
+        const intervalID = setInterval(() => {
+            getCommentDetail(setCommentDetailResponse, postid, commentid);
+    
+        }, 5000);
+        
+        // Clean-Up Function
+        return (() => { clearInterval(intervalID); });
+    });
 
     if(commentDetailResponse){
 

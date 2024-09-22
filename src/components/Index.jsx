@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Post from "./Post";
 import { BLOG_API_BASE_URL } from "../utils/urls";
 
-let apiCallCount = 0;
+let apiCallCount = 1;
 
 async function getIndex(setIndexResponse){
 
