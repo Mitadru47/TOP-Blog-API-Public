@@ -311,6 +311,23 @@ body{
   color: white;
 }
 
+#comment-failed-info{
+
+  color: #800000;
+  font-size: 0.8rem;
+
+  margin-top: 10px;
+  padding-left: 20px;
+}
+
+.display-on{
+  display: block;
+}
+
+.display-off{
+  display: none;
+}
+
 /* CommentDetail.jsx */
 
 #comment-details{

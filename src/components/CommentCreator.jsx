@@ -12,6 +12,8 @@ function handleSubmit(event, id){
     const plainFormData = Object.fromEntries(data.entries());
     const formDataJsonString = JSON.stringify(plainFormData);
 
+    // Disabling Inputs to prevent Spamming
+
     let body = document.getElementById("body-input");
     let username = document.getElementById("username-input");
     let email = document.getElementById("email-input"); 
@@ -36,17 +38,52 @@ function handleSubmit(event, id){
             body: formDataJsonString 
         })
 
-        .then(() => { 
+        .then((response) => response.json())
+        .then((responseBody) => {
     
+            if(responseBody.status === "Failure!"){
+            
+                // Displaying error messages received from backend
+                
+                let message = document.getElementById("comment-failed-info");
+
+                message.classList.remove("display-off");
+                message.classList.add("display-on");
+
+                let err = "";
+                for(let i=0; i<responseBody.error.length; i++){
+                
+                    if(i === responseBody.error.length - 1)
+                        err = err + responseBody.error[i].msg;
+
+                    else
+                        err = err + responseBody.error[i].msg + "\n ";
+                }
+
+                message.innerText = err;
+            }
+
+            else{
+
+                let message = document.getElementById("comment-failed-info");
+
+                message.classList.remove("display-on");
+                message.classList.add("display-off");
+
+                // After successful POST, removing previous comment body to prevent Spamming
+
+                body.value = "";
+
+                username.value = plainFormData.username;
+                email.value = plainFormData.email;
+            }
+            
+            // Re-enabling Inputs after POST
+
             body.disabled = false;
             username.disabled = false;
             email.disabled = false;
             submit.disabled = false;
-
-            body.value = "";
-
-            username.value = plainFormData.username;
-            email.value = plainFormData.email;
         }
     )
         .catch((error) => console.log(error));  
@@ -71,7 +108,9 @@ function CommentCreator({ post }){
                 
                     <input id="post-input" type="text" name="post"  value={post[0]._id} readOnly></input>
                     <button id="submit-button" type="submit">Comment</button>
-                
+
+                    <div id="comment-failed-info" className="display-off">Something went wrong. Please try again!</div>
+
                 </form>
 
             </div>
