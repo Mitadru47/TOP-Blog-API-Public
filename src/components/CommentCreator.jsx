@@ -1,6 +1,57 @@
 import React from "react";
 import { BLOG_API_BASE_URL } from "../utils/urls";
 
+function handleSubmit(event, id){
+
+    event.preventDefault();
+
+    // Form Data Parsing
+
+    const data = new FormData(event.currentTarget);
+
+    const plainFormData = Object.fromEntries(data.entries());
+    const formDataJsonString = JSON.stringify(plainFormData);
+
+    let body = document.getElementById("body-input");
+    let username = document.getElementById("username-input");
+    let email = document.getElementById("email-input"); 
+    let submit = document.getElementById("submit-button");
+
+    body.disabled = true;
+    username.disabled = true;
+    email.disabled = true;
+    submit.disabled = true;
+
+    // API Header Creation
+
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    
+    fetch(BLOG_API_BASE_URL + "index/post/" + id + "/comment/create", {
+         
+            mode: "cors",
+            method: "POST",
+            
+            headers: headers,
+            body: formDataJsonString 
+        })
+
+        .then(() => { 
+    
+            body.disabled = false;
+            username.disabled = false;
+            email.disabled = false;
+            submit.disabled = false;
+
+            body.value = "";
+
+            username.value = plainFormData.username;
+            email.value = plainFormData.email;
+        }
+    )
+        .catch((error) => console.log(error));  
+}
+
 function CommentCreator({ post }){
 
     return(
@@ -9,21 +60,19 @@ function CommentCreator({ post }){
 
             <div id="form-container">
 
-                <form target="status" action={BLOG_API_BASE_URL + "index/post/" + post[0]._id + "/comment/create"} method="POST">
+                <form onSubmit={(event) => handleSubmit(event, post[0]._id)}>
                     
-                    <textarea id="body-input" name="body" cols="150" rows="4" placeholder="Comment"></textarea>
+                    <textarea id="body-input" name="body" cols="150" rows="4" defaultValue="" placeholder="Comment" required></textarea>
                     
                     <br></br>
                 
-                    <input type="text" name="username" placeholder="Username"></input>
-                    <input id="email-input" type="text" name="email" placeholder="Email"></input>
-                    <input id="post-input" type="text" name="post"  value={post[0]._id} readOnly></input>
+                    <input id="username-input" type="text" name="username" defaultValue="" placeholder="Username" required></input>
+                    <input id="email-input" type="email" name="email" defaultValue="" placeholder="Email" required></input>
                 
+                    <input id="post-input" type="text" name="post"  value={post[0]._id} readOnly></input>
                     <button id="submit-button" type="submit">Comment</button>
                 
                 </form>
-    
-                <iframe id="status" name="status"></iframe>
 
             </div>
         </div>
