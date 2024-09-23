@@ -303,23 +303,29 @@ body{
   background-color: white;
 }
 
-#status{
-
-  display: none;
-
-  border: 0px solid gray;
-  border-radius: 10px;
-
-  height: 100px;
-  width: 250px;
-}
-
 #submit-button:hover{
 
   cursor: pointer;
 
   background-color: black;
   color: white;
+}
+
+#comment-failed-info{
+
+  color: #800000;
+  font-size: 0.8rem;
+
+  margin-top: 10px;
+  padding-left: 20px;
+}
+
+.display-on{
+  display: block;
+}
+
+.display-off{
+  display: none;
 }
 
 /* CommentDetail.jsx */
