@@ -1,3 +1,5 @@
+import React from "react";
+
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -6,9 +8,11 @@ import CommentCreator from "./CommentCreator";
 
 import { BLOG_API_BASE_URL } from "../utils/urls";
 
-async function getPostDetail(setPostDetailResponse){
+let apiCallCount = 1;
 
-    let { id } = useParams();
+async function getPostDetail(setPostDetailResponse, id){
+
+    console.log("PostDetail - API Trigger #" + apiCallCount++);
 
     fetch(BLOG_API_BASE_URL + "index/post/" + id, { mode: 'cors' })
         
@@ -20,8 +24,19 @@ async function getPostDetail(setPostDetailResponse){
 
 function PostDetail(){
 
+    const { id } = useParams();
     const [postDetailResponse, setPostDetailResponse] = useState();
-    getPostDetail(setPostDetailResponse);
+   
+    useEffect(() => { 
+    
+        const intervalID = setInterval(() => {
+            getPostDetail(setPostDetailResponse, id);
+    
+        }, 5000);
+        
+        // Clean-Up Function
+        return (() => { clearInterval(intervalID); });
+    });
 
     if(postDetailResponse){
 
