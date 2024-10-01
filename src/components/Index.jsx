@@ -1,7 +1,9 @@
 import React from "react";
 import { useEffect, useState } from "react";
 
+import Header from './Header.jsx';
 import Post from "./Post";
+
 import { BLOG_API_BASE_URL } from "../utils/urls";
 
 let apiCallCount = 1;
@@ -39,9 +41,13 @@ function Index() {
 
     return (
 
-      <div className="posts">          
-        {indexResponse.posts.map((post) => <Post key={index} index={index++} post={post} />)}
+      <div>
+        <Header />
+      
+        <div className="posts">          
+          {indexResponse.posts.map((post) => <Post key={index} index={index++} post={post} />)}
 
+        </div>
       </div>
     );
   }

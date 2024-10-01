@@ -3,6 +3,8 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
+import Header from './Header.jsx';
+
 import Comments from "./Comments";
 import CommentCreator from "./CommentCreator";
 
@@ -19,7 +21,13 @@ async function getPostDetail(setPostDetailResponse, id){
         .then((response) => response.json())
         .then((responseBody) => setPostDetailResponse(responseBody))
 
-        .catch((error) => console.log(error));
+        .catch((error) => {
+            
+            console.log(error);
+            
+            let element = document.getElementsByClassName("loader");
+            element[0].innerText = "Something went wrong..\nFailed to load post detail page!";
+        });
 }
 
 function PostDetail(){
@@ -45,39 +53,43 @@ function PostDetail(){
 
         return(
 
-            <div id="details">
+            <div>
+                <Header />
 
-                <div id="post-detail-container">
+                <div id="details">
 
-                    <div id="post-detail">
+                    <div id="post-detail-container">
 
-                        <div className="post-title">
-                            <a href={"/index" + post[0].url}>{post[0].title}</a>
+                        <div id="post-detail">
+
+                            <div className="post-title">
+                                <a href={"/index" + post[0].url}>{post[0].title}</a>
+
+                            </div>
+
+                            <div className="post-body">{post[0].body}</div>
 
                         </div>
 
-                        <div className="post-body">{post[0].body}</div>
+                        <div className="post-detail-timestamp-container">
+                                    
+                            <div className="post-timestamp">{!(post[0].createdTimestamp === post[0].timestamp) && ("Edited: " + post[0].timestamp)}</div>
+                            <div className="post-timestamp">Created: {post[0].createdTimestamp}</div>
+                        
+                        </div>
 
                     </div>
 
-                    <div className="post-detail-timestamp-container">
-                                
-                        <div className="post-timestamp">{!(post[0].createdTimestamp === post[0].timestamp) && ("Edited: " + post[0].timestamp)}</div>
-                        <div className="post-timestamp">Created: {post[0].createdTimestamp}</div>
-                    
-                    </div>
+                    <Comments comments={comments} />
+
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                
+                    <CommentCreator post={post} />
 
                 </div>
-
-                <Comments comments={comments} />
-
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-            
-                <CommentCreator post={post} />
-
             </div>
         );
     }

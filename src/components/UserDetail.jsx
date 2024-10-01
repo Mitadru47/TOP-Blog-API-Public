@@ -3,6 +3,8 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { BLOG_API_BASE_URL } from "../utils/urls";
 
+import Header from './Header.jsx';
+
 let apiCallCount = 1;
 
 async function getUserDetail(setUserDetailResponse){
@@ -35,19 +37,23 @@ function UserDetail(){
         
         return(
 
-            <div id="author-details">
-                
-                <div id="authorName"><strong>Author:</strong><br></br>{userDetailResponse[0].firstName + " " + userDetailResponse[0].lastName}</div>
+            <div>
+                <Header />
 
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
+                <div id="author-details">
+                    
+                    <div id="authorName"><strong>Author:</strong><br></br>{userDetailResponse[0].firstName + " " + userDetailResponse[0].lastName}</div>
 
-                <div><strong>Alias:</strong> {userDetailResponse[0].username}</div>
-                <div><strong>Email:</strong> {userDetailResponse[0].email}</div>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
 
+                    <div><strong>Alias:</strong> {userDetailResponse[0].username}</div>
+                    <div><strong>Email:</strong> {userDetailResponse[0].email}</div>
+
+                </div>
             </div>
         );
     }
