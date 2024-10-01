@@ -1,6 +1,7 @@
 import React from "react";
 
 import Header from './Header.jsx';
+import Loader from "./Loader.jsx";
 
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -18,7 +19,16 @@ async function getCommentDetail(setCommentDetailResponse, postid, commentid){
         .then((response) => response.json())
         .then((responseBody) => setCommentDetailResponse(responseBody))
 
-        .catch((error) => console.log(error))
+        .catch((error) => {
+            
+            console.log(error);
+            
+            let loaderElements = document.getElementsByClassName("loader");
+            loaderElements[0].innerText = "Something went wrong. Failed to load Comment...";
+
+            let errorElements = document.getElementsByClassName("error");
+            errorElements[0].innerText = error;
+        });
 }
 
 function CommentDetail(){
@@ -78,7 +88,7 @@ function CommentDetail(){
     }
 
     else
-        return <div className="loader">Loading Comment...</div>;
+        return <Loader name="Comment"/>
 }
 
 export default CommentDetail;

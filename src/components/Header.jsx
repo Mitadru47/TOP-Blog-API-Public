@@ -3,6 +3,8 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { BLOG_API_BASE_URL, BLOG_API_PRIVATE_LOGIN } from "../utils/urls";
 
+import Loader from "./Loader.jsx";
+
 let apiCallCount = 1;
 
 async function getIndex(setIndexResponse){
@@ -14,7 +16,13 @@ async function getIndex(setIndexResponse){
         .then((response) => response.json())
         .then((responseBody) => setIndexResponse(responseBody))
 
-        .catch((error) => console.log(error));
+        .catch((error) => {
+            
+            console.log(error);
+            
+            let element = document.getElementsByClassName("loader");
+            element[0].innerText = "Something went wrong!\nFailed to load Header...\n\n" + error;
+        });
 }
 
 function Header(){
@@ -67,7 +75,7 @@ function Header(){
     }
 
     else
-        return <div className="loader">Loading Header...</div>;
+        return <Loader />
 }
 
 export default Header;

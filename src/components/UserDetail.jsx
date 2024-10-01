@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { BLOG_API_BASE_URL } from "../utils/urls";
 
 import Header from './Header.jsx';
+import Loader from "./Loader.jsx";
 
 let apiCallCount = 1;
 
@@ -15,7 +16,16 @@ async function getUserDetail(setUserDetailResponse){
         .then((response) => response.json())
         .then((responseBody) => setUserDetailResponse(responseBody))
 
-        .catch((error) => console.log(error));
+        .catch((error) => {
+            
+            console.log(error);
+          
+            let loaderElements = document.getElementsByClassName("loader");
+            loaderElements[0].innerText = "Something went wrong. Failed to load Author...";
+
+            let errorElements = document.getElementsByClassName("error");
+            errorElements[0].innerText = error;
+        });
 }
 
 function UserDetail(){
@@ -59,7 +69,7 @@ function UserDetail(){
     }
 
     else
-        return <div className="loader">Loading Author...</div>;
+        return <Loader name="Author"/>
 }
 
 export default UserDetail;

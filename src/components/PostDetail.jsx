@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import Header from './Header.jsx';
+import Loader from "./Loader.jsx";
 
 import Comments from "./Comments";
 import CommentCreator from "./CommentCreator";
@@ -24,9 +25,12 @@ async function getPostDetail(setPostDetailResponse, id){
         .catch((error) => {
             
             console.log(error);
-            
-            let element = document.getElementsByClassName("loader");
-            element[0].innerText = "Something went wrong..\nFailed to load post detail page!";
+
+            let loaderElements = document.getElementsByClassName("loader");
+            loaderElements[0].innerText = "Something went wrong. Failed to load Post...";
+
+            let errorElements = document.getElementsByClassName("error");
+            errorElements[0].innerText = error;
         });
 }
 
@@ -95,7 +99,7 @@ function PostDetail(){
     }
 
     else
-        return <div className="loader">Loading Post...</div>;
+        return <Loader name="Post"/>
 }
 
 export default PostDetail;
