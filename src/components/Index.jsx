@@ -1,7 +1,11 @@
 import React from "react";
 import { useEffect, useState } from "react";
 
+import Header from './Header.jsx';
+import Loader from "./Loader.jsx";
+
 import Post from "./Post";
+
 import { BLOG_API_BASE_URL } from "../utils/urls";
 
 let apiCallCount = 1;
@@ -15,7 +19,16 @@ async function getIndex(setIndexResponse){
       .then((response) => response.json())
       .then((responseBody) => setIndexResponse(responseBody))
 
-      .catch((error) => console.log(error));
+      .catch((error) => {
+            
+        console.log(error);
+      
+        let loaderElements = document.getElementsByClassName("loader");
+        loaderElements[0].innerText = "Something went wrong. Failed to load Index...";
+
+        let errorElements = document.getElementsByClassName("error");
+        errorElements[0].innerText = error;
+    });
 }
 
 function Index() {
@@ -39,15 +52,19 @@ function Index() {
 
     return (
 
-      <div className="posts">          
-        {indexResponse.posts.map((post) => <Post key={index} index={index++} post={post} />)}
+      <div>
+        <Header />
+      
+        <div className="posts">          
+          {indexResponse.posts.map((post) => <Post key={index} index={index++} post={post} />)}
 
+        </div>
       </div>
     );
   }
 
   else
-    return <div className="loader">Loading Index...</div>;
+    return <Loader name="Index"/>
 }
 
 export default Index;
