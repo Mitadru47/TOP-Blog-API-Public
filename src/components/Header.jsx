@@ -7,14 +7,14 @@ import Loader from "./Loader.jsx";
 
 let apiCallCount = 1;
 
-async function getIndex(setIndexResponse){
+async function getIndexHeader(setIndexHeaderResponse){
 
     console.log("Header - API Trigger #" + apiCallCount++);
 
-    fetch(BLOG_API_BASE_URL + "index", { mode: 'cors' })
+    fetch(BLOG_API_BASE_URL + "index/header", { mode: 'cors' })
 
         .then((response) => response.json())
-        .then((responseBody) => setIndexResponse(responseBody))
+        .then((responseBody) => setIndexHeaderResponse(responseBody))
 
         .catch((error) => {
             
@@ -27,17 +27,17 @@ async function getIndex(setIndexResponse){
 
 function Header(props){
 
-    const [indexResponse, setIndexResponse] = useState();
+    const [indexHeaderResponse, setIndexHeaderResponse] = useState();
     
     useEffect(() => { 
 
         if(apiCallCount === 1)
-            getIndex(setIndexResponse);
+            getIndexHeader(setIndexHeaderResponse);
 
         if(apiCallCount > 1){
      
             const intervalID = setInterval(() => {
-            getIndex(setIndexResponse); 
+            getIndexHeader(setIndexHeaderResponse); 
         
             }, props.poll);
             
@@ -46,7 +46,7 @@ function Header(props){
         }
     });
 
-    if(indexResponse){
+    if(indexHeaderResponse){
 
         return(
 
@@ -61,11 +61,11 @@ function Header(props){
                     <div id="header-info">
 
                         <div id="author-link"> 
-                            <a id="author" href={"/index" + indexResponse.author[0].url}>Author(s)</a>
+                            <a id="author" href={"/index/user"}>Author(s)</a>
                         </div>
 
                         <div id="post-count-container"> 
-                            <p id="post-count">Published Posts: {indexResponse.posts.length}</p>
+                            <p id="post-count">Published Posts: {indexHeaderResponse.count}</p>
                         </div>
 
                     </div>
