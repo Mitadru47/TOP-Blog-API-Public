@@ -31,7 +31,7 @@ async function getCommentDetail(setCommentDetailResponse, postid, commentid){
         });
 }
 
-function CommentDetail(){
+function CommentDetail(props){
 
     const { postid, commentid } = useParams();
     const [commentDetailResponse, setCommentDetailResponse] = useState();
@@ -46,7 +46,7 @@ function CommentDetail(){
             const intervalID = setInterval(() => {
                 getCommentDetail(setCommentDetailResponse, postid, commentid);
         
-            }, 5000);
+            }, props.poll);
             
             // Clean-Up Function
             return (() => { clearInterval(intervalID); });
@@ -58,7 +58,7 @@ function CommentDetail(){
         return(
 
             <div>
-                <Header />
+                <Header poll={ props.poll }/>
 
                 <div id = "comment-details">
                     

@@ -25,7 +25,7 @@ async function getIndex(setIndexResponse){
         });
 }
 
-function Header(){
+function Header(props){
 
     const [indexResponse, setIndexResponse] = useState();
     
@@ -39,7 +39,7 @@ function Header(){
             const intervalID = setInterval(() => {
             getIndex(setIndexResponse); 
         
-            }, 5000);
+            }, props.poll);
             
             // Clean-Up Function
             return (() => { clearInterval(intervalID); });

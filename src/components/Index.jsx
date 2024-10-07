@@ -31,7 +31,7 @@ async function getIndex(setIndexResponse){
     });
 }
 
-function Index() {
+function Index(props) {
 
   const [indexResponse, setIndexResponse] = useState();
 
@@ -45,7 +45,7 @@ function Index() {
       const intervalID = setInterval(() => {
         getIndex(setIndexResponse); 
 
-      }, 5000);
+      }, props.poll);
       
       // Clean-Up Function
       return (() => { clearInterval(intervalID); });
@@ -59,7 +59,7 @@ function Index() {
     return (
 
       <div>
-        <Header />
+        <Header poll={ props.poll }/>
       
         <div className="posts">          
           {indexResponse.posts.map((post) => <Post key={index} index={index++} post={post} />)}

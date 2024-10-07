@@ -34,7 +34,7 @@ async function getPostDetail(setPostDetailResponse, id){
         });
 }
 
-function PostDetail(){
+function PostDetail(props){
 
     const { id } = useParams();
     const [postDetailResponse, setPostDetailResponse] = useState();
@@ -49,7 +49,7 @@ function PostDetail(){
             const intervalID = setInterval(() => {
                 getPostDetail(setPostDetailResponse, id);
         
-            }, 5000);
+            }, props.poll);
             
             // Clean-Up Function
             return (() => { clearInterval(intervalID); });
@@ -64,7 +64,7 @@ function PostDetail(){
         return(
 
             <div>
-                <Header />
+                <Header poll={ props.poll }/>
 
                 <div id="details">
 

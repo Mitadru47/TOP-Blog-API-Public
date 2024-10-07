@@ -28,7 +28,7 @@ async function getUserDetail(setUserDetailResponse){
         });
 }
 
-function UserDetail(){
+function UserDetail(props){
     
     const [userDetailResponse, setUserDetailResponse] = useState();
 
@@ -42,7 +42,7 @@ function UserDetail(){
             const intervalID = setInterval(() => {
             getUserDetail(setUserDetailResponse); 
         
-            }, 5000);
+            }, props.poll);
             
             // Clean-Up Function
             return (() => { clearInterval(intervalID); });
@@ -54,7 +54,7 @@ function UserDetail(){
         return(
 
             <div>
-                <Header />
+                <Header poll={ props.poll }/>
 
                 <div id="author-details">
                     
