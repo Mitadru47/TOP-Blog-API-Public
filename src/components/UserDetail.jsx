@@ -33,14 +33,20 @@ function UserDetail(){
     const [userDetailResponse, setUserDetailResponse] = useState();
 
     useEffect(() => { 
+
+        if(apiCallCount === 1)
+            getUserDetail(setUserDetailResponse); 
+
+        if(apiCallCount > 1){
     
-        const intervalID = setInterval(() => {
-          getUserDetail(setUserDetailResponse); 
-    
-        }, 5000);
+            const intervalID = setInterval(() => {
+            getUserDetail(setUserDetailResponse); 
         
-        // Clean-Up Function
-        return (() => { clearInterval(intervalID); });
+            }, 5000);
+            
+            // Clean-Up Function
+            return (() => { clearInterval(intervalID); });
+        }
     });
 
     if(userDetailResponse){

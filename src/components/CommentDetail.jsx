@@ -37,14 +37,20 @@ function CommentDetail(){
     const [commentDetailResponse, setCommentDetailResponse] = useState();
    
     useEffect(() => { 
-    
-        const intervalID = setInterval(() => {
+
+        if(apiCallCount === 1)
             getCommentDetail(setCommentDetailResponse, postid, commentid);
+
+        if(apiCallCount > 1){
     
-        }, 5000);
+            const intervalID = setInterval(() => {
+                getCommentDetail(setCommentDetailResponse, postid, commentid);
         
-        // Clean-Up Function
-        return (() => { clearInterval(intervalID); });
+            }, 5000);
+            
+            // Clean-Up Function
+            return (() => { clearInterval(intervalID); });
+        }
     });
 
     if(commentDetailResponse){

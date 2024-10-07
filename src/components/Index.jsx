@@ -37,13 +37,19 @@ function Index() {
 
   useEffect(() => { 
     
-    const intervalID = setInterval(() => {
-      getIndex(setIndexResponse); 
+    if(apiCallCount === 1)
+      getIndex(setIndexResponse);
 
-    }, 5000);
-    
-    // Clean-Up Function
-    return (() => { clearInterval(intervalID); });
+    if(apiCallCount > 1){
+
+      const intervalID = setInterval(() => {
+        getIndex(setIndexResponse); 
+
+      }, 5000);
+      
+      // Clean-Up Function
+      return (() => { clearInterval(intervalID); });
+    }
   });
 
   if(indexResponse){

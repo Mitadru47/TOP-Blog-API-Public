@@ -30,14 +30,20 @@ function Header(){
     const [indexResponse, setIndexResponse] = useState();
     
     useEffect(() => { 
-    
-        const intervalID = setInterval(() => {
-          getIndex(setIndexResponse); 
-    
-        }, 5000);
+
+        if(apiCallCount === 1)
+            getIndex(setIndexResponse);
+
+        if(apiCallCount > 1){
+     
+            const intervalID = setInterval(() => {
+            getIndex(setIndexResponse); 
         
-        // Clean-Up Function
-        return (() => { clearInterval(intervalID); });
+            }, 5000);
+            
+            // Clean-Up Function
+            return (() => { clearInterval(intervalID); });
+        }
     });
 
     if(indexResponse){

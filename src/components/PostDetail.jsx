@@ -41,13 +41,19 @@ function PostDetail(){
    
     useEffect(() => { 
     
-        const intervalID = setInterval(() => {
+        if(apiCallCount === 1)
             getPostDetail(setPostDetailResponse, id);
-    
-        }, 5000);
+
+        if(apiCallCount > 1){
+
+            const intervalID = setInterval(() => {
+                getPostDetail(setPostDetailResponse, id);
         
-        // Clean-Up Function
-        return (() => { clearInterval(intervalID); });
+            }, 5000);
+            
+            // Clean-Up Function
+            return (() => { clearInterval(intervalID); });
+        }
     });
 
     if(postDetailResponse){
