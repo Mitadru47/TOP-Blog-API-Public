@@ -28,19 +28,25 @@ async function getUserDetail(setUserDetailResponse){
         });
 }
 
-function UserDetail(){
+function UserDetail(props){
     
     const [userDetailResponse, setUserDetailResponse] = useState();
 
     useEffect(() => { 
+
+        if(apiCallCount === 1)
+            getUserDetail(setUserDetailResponse); 
+
+        if(apiCallCount > 1){
     
-        const intervalID = setInterval(() => {
-          getUserDetail(setUserDetailResponse); 
-    
-        }, 5000);
+            const intervalID = setInterval(() => {
+            getUserDetail(setUserDetailResponse); 
         
-        // Clean-Up Function
-        return (() => { clearInterval(intervalID); });
+            }, props.poll);
+            
+            // Clean-Up Function
+            return (() => { clearInterval(intervalID); });
+        }
     });
 
     if(userDetailResponse){
@@ -48,7 +54,7 @@ function UserDetail(){
         return(
 
             <div>
-                <Header />
+                <Header poll={ props.poll }/>
 
                 <div id="author-details">
                     

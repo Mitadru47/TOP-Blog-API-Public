@@ -31,20 +31,26 @@ async function getCommentDetail(setCommentDetailResponse, postid, commentid){
         });
 }
 
-function CommentDetail(){
+function CommentDetail(props){
 
     const { postid, commentid } = useParams();
     const [commentDetailResponse, setCommentDetailResponse] = useState();
    
     useEffect(() => { 
-    
-        const intervalID = setInterval(() => {
+
+        if(apiCallCount === 1)
             getCommentDetail(setCommentDetailResponse, postid, commentid);
+
+        if(apiCallCount > 1){
     
-        }, 5000);
+            const intervalID = setInterval(() => {
+                getCommentDetail(setCommentDetailResponse, postid, commentid);
         
-        // Clean-Up Function
-        return (() => { clearInterval(intervalID); });
+            }, props.poll);
+            
+            // Clean-Up Function
+            return (() => { clearInterval(intervalID); });
+        }
     });
 
     if(commentDetailResponse){
@@ -52,7 +58,7 @@ function CommentDetail(){
         return(
 
             <div>
-                <Header />
+                <Header poll={ props.poll }/>
 
                 <div id = "comment-details">
                     

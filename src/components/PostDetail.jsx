@@ -34,20 +34,26 @@ async function getPostDetail(setPostDetailResponse, id){
         });
 }
 
-function PostDetail(){
+function PostDetail(props){
 
     const { id } = useParams();
     const [postDetailResponse, setPostDetailResponse] = useState();
    
     useEffect(() => { 
     
-        const intervalID = setInterval(() => {
+        if(apiCallCount === 1)
             getPostDetail(setPostDetailResponse, id);
-    
-        }, 5000);
+
+        if(apiCallCount > 1){
+
+            const intervalID = setInterval(() => {
+                getPostDetail(setPostDetailResponse, id);
         
-        // Clean-Up Function
-        return (() => { clearInterval(intervalID); });
+            }, props.poll);
+            
+            // Clean-Up Function
+            return (() => { clearInterval(intervalID); });
+        }
     });
 
     if(postDetailResponse){
@@ -58,7 +64,7 @@ function PostDetail(){
         return(
 
             <div>
-                <Header />
+                <Header poll={ props.poll }/>
 
                 <div id="details">
 

@@ -12,40 +12,43 @@ import CommentDetail from './components/CommentDetail.jsx';
 
 import UserDetail from './components/UserDetail.jsx';
 
+const pollingFrequency = 5000;
+console.log(`Polling Frequency: ${pollingFrequency / 1000}s`);
+
 const router = createBrowserRouter([
   
   {
 
     path: "/",
-    element: <Index />
+    element: <Index poll={ pollingFrequency }/>
 
   },
 
   {
 
     path: "/index",
-    element: <Index />
+    element: <Index poll={ pollingFrequency }/>
 
   },
 
   {
 
     path: "/index/post/:id",
-    element: <PostDetail />
+    element: <PostDetail poll={ pollingFrequency }/>
 
   },
 
   {
 
     path: "/index/user",
-    element: <UserDetail />
+    element: <UserDetail poll={ pollingFrequency }/>
     
   },
 
   {
 
     path: "/index/post/:postid/comment/:commentid",
-    element: <CommentDetail />
+    element: <CommentDetail poll={ pollingFrequency }/>
     
   },
 
